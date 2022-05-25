@@ -4,3 +4,68 @@
 .active {
     visibility: visible;
 }
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    background-color: cornflowerblue;
+}
+
+input {
+    font-size: 26px;
+}
+
+button[type="submit"] {
+    font-size: 26px;
+    border:none;
+}
+
+.gallery {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+img {
+    width:350px;
+}
+
+.photo-card {
+    margin:15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+    margin-bottom: 0px;
+    
+
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.load-more {
+    font-size: 30px;
+        margin-left: calc((100% - 300px)/2);
+        margin-right: auto;
+        width: 300px;
+
+        background-color: green;
+        color:white;
+        margin-top:30px;
+        margin-bottom:60px;
+}
