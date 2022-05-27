@@ -22,6 +22,12 @@ import { notification } from "./notification";
 import SimpleLightbox from "simplelightbox";
 import { markupSLB } from "./markupSLB.js";
 import "simplelightbox/dist/simple-lightbox.min.css";
+import { smothScroll } from "./smoothScroll";
+import { isFullyVisible } from "./isFullyVisible";
+import { isPartiallyVisible } from "./isPartialyVisible";
+
+const lightbox = new SimpleLightbox('.photo-card a', { overlayOpacity: 0.7 });
+
 
 refs.loadMoreButton.classList.add('not-active')
 
@@ -45,8 +51,16 @@ refs.page===1}
 
 refs.loadMoreButton.addEventListener('click', (e) => {
     e.preventDefault();
-    moreCards()
-})
+    moreCards();
+});
+
+//window.addEventListener('scroll', (e) => {
+//    if (isFullyVisible(refs.gallery.lastChild) || isPartiallyVisible(refs.gallery.lastChild)) {
+//        moreCards()
+//    }
+//})
+
+
 
 
  async function renderCards () {
@@ -60,6 +74,8 @@ refs.loadMoreButton.addEventListener('click', (e) => {
      const markup = await markupSLB(response);
      refs.gallery.innerHTML = markup;
      loadMoreVisibility(response);
+     lightbox.refresh();
+    
      
 };
 
@@ -70,9 +86,15 @@ async function moreCards () {
      const result = await getImagesData(request);
      const response = await result.hits;
      const markup = await markupSLB(response);
-     refs.gallery.insertAdjacentHTML("beforeend",markup)
-     
+    refs.gallery.insertAdjacentHTML("beforeend", markup);
+    loadMoreVisibility(response);
+    lightbox.refresh();
+    smothScroll();
 }
+
+
+
+
 
 
 
